@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 12, 2020 at 10:11 AM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.4
+-- Generation Time: May 29, 2021 at 12:32 PM
+-- Server version: 10.4.18-MariaDB
+-- PHP Version: 7.3.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -37,6 +37,15 @@ CREATE TABLE `ctpm` (
   `GhiChu` varchar(50) COLLATE utf8mb4_vietnamese_ci DEFAULT NULL,
   `TienPhat` double DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
+
+--
+-- Dumping data for table `ctpm`
+--
+
+INSERT INTO `ctpm` (`MaPM`, `MaSach`, `NgayTra`, `TinhTrangSach`, `TinhTrangTra`, `User`, `GhiChu`, `TienPhat`) VALUES
+('PM49', 'MS01', '2021-05-05', 1, 1, 'admin', 'tốt', 0),
+('PM50', 'MS01', '2021-05-21', 1, 1, 'admin', 'tot', 0),
+('PM51', 'MS01', '2021-05-25', 1, 1, NULL, 'tot', 20000);
 
 -- --------------------------------------------------------
 
@@ -131,6 +140,37 @@ INSERT INTO `docgia` (`MaDG`, `TenDG`, `SDT`, `DiaChi`, `GioiTinh`, `MatSach`) V
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `muasach`
+--
+
+CREATE TABLE `muasach` (
+  `MaSoMuaSach` int(11) NOT NULL,
+  `HoTen` varchar(50) NOT NULL,
+  `SoDienThoa` char(10) NOT NULL,
+  `DiaChi` varchar(100) NOT NULL,
+  `ThanhToan` int(1) NOT NULL,
+  `maSach` varchar(10) NOT NULL,
+  `TinhTranDonHang` int(11) NOT NULL,
+  `User` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `muasach`
+--
+
+INSERT INTO `muasach` (`MaSoMuaSach`, `HoTen`, `SoDienThoa`, `DiaChi`, `ThanhToan`, `maSach`, `TinhTranDonHang`, `User`) VALUES
+(1, 'tuan', '0396118696', 'tan ki ', 1, 'ms01', 1, ''),
+(4, 'yen', '0396337348', 'Vinh', 0, 'MS01', 0, ''),
+(5, 'tuan', '0396118696', 'Tan kif nghe an', 0, 'ms01', 0, ''),
+(6, 'Ly', '0396118696', 'Que phong', 1, 'MS02', 1, 'admin'),
+(7, 'tuan', '111', 'tan', 1, 'MS01', 1, 'admin'),
+(8, 'ád', '1', 'v', 1, 'MS03', 1, 'Khách Hàng'),
+(9, 'dsf', '111', 'fdsf', 0, 'MS02', 0, 'Khách Hàng'),
+(10, 'jdf', '01', 'sad', 1, 'MS03', 1, 'admin');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `phieumuon`
 --
 
@@ -195,7 +235,10 @@ INSERT INTO `phieumuon` (`MaPM`, `MaDG`, `NgayMuon`, `NgayHenTra`, `SoLuongMuon`
 ('PM45', 'DG14', '2020-07-05', '2020-08-05', 2, 'phuckhang'),
 ('PM46', 'DG26', '2020-07-06', '2020-08-06', 1, 'phuckhang'),
 ('PM47', 'DG62', '2020-07-07', '2020-08-07', 1, 'phuckhang'),
-('PM48', 'DG07', '2020-07-08', '2020-08-08', 3, 'canhlong');
+('PM48', 'DG07', '2020-07-08', '2020-08-08', 3, 'canhlong'),
+('PM49', 'DG01', '2021-05-04', '2021-05-05', 1, 'admin'),
+('PM50', 'DG01', '2021-05-20', '2021-05-21', 0, 'admin'),
+('PM51', 'DG01', '2021-05-20', '2021-05-21', 0, 'admin');
 
 -- --------------------------------------------------------
 
@@ -220,10 +263,10 @@ CREATE TABLE `sach` (
 --
 
 INSERT INTO `sach` (`MaSach`, `TenSach`, `TenTG`, `NhaXB`, `TheLoai`, `SoLuong`, `GiaTien`, `ImageUrl`, `MieuTa`) VALUES
-('MS01', 'GIÁO TRÌNH NHỮNG NGUYÊN LÝ MÁC - LÊNIN', 'Bộ Giáo Dục và Đào Tạo', 'Chính Trị Quốc Gia Sự Thật', 'Giáo trình', 10, 59000, '/img/sach/mac.jpg', 'Thực hiện các Nghị quyết của Đảng Cộng sản Việt Nam, nhất là Nghị quyết Trung ương 5 (khóa X) về công tác tư tưởng, lý luận và báo chí trước yêu cầu mới, ngày 18/9/2008, Bộ Giáo dục và Đào tạo đã ban hành Quyết định số 52/2008/QĐ-BGĐT ban hành Chương trình môn học Những Nguyên Lý Cơ Bản Của Chủ Nghĩa Mác - Lênin dành cho sinh viên khối không chuyên ngành Mác - Lênin, tư tưởng Hồ Chí Minh và phối hợp với Nhà xuất bản Chính trị quốc gia Sự thật xuất bản Giáo Trình Những Nguyên Lý Cơ Bản Của Chủ Nghĩa Mác - Lênin (Dành cho sinh viên đại học, cao đăng khối không chuyên ngành Mác - Lênin, tư tưởng Hồ Chí Minh)  Cuốn giáo trình chính trị này bao gồm 3 phần: • Phần 1: Thế giới quan, phương pháp luận triết học của chủ nghĩa Mác - Lênin • Phần 2: Học thuyết kinh tế của chủ nghĩa Mác - Lênin về phương thức sản xuất tư bản chủ nghĩa • Phần 3: Lý luận của chủ nghĩa Mác - Lênin về chủ nghĩa xã hội'),
-('MS02', 'ĐẠI SỐ TUYỂN TÍNH', 'Ninh Quang Hải', 'NXB Xây Dựng', 'Giáo trình', 10, 52000, '/img/sach/aHR0cHM6Ly9zYWx0LnRpa2ljZG4uY29tL3RzL3Byb2R1Y3QvNTMvMGIvMGUvMjIyYzU0NTU0ODk3ZmE0NzFmOGExNzhlODU4NjJmNmIuanBn.jpg', 'Sách ĐẠI SỐ TUYẾN TÍNH gồm các chương sau:  Chương 1: MA TRẬN - ĐỊNH THỨC - HỆ PHƯƠNG TRÌNH TUYẾN TÍNH.    Chương 2: KHÔNG GIAN VÉC TƠ Chương 3: ÁNH XẠ TUYẾN TÍNH '),
-('MS03', 'LUẬT IM LẶNG', 'Mario Puzo', 'NXB Văn Học', 'Văn học nước ngoài', 10, 710000, '/img/sach/luat-im-lang-bia-1.jpg', '“Tổ chức Mafia củng cố uy quyền bằng luật omerta nghĩa là làm thinh, câm nín. Dân quê Sicily kín miệng đến nỗi người lạ hỏi đường cũng làm thinh. Trong nội bộ Mafia có tội nào đáng chết bằng tội mật báo cảnh sát? Dù chỉ đi thưa lính, tố cáo một thằng vừa giết hụt mình hay vừa đánh đập mình có thương tích. Sau cùng luật omerta trở thành một đạo sống của mọi giới. Chồng con bị giết, con gái bị hãm hiếp, người đàn bà chính gốc Sicily chẳng bao giờ đi thưa lính, nhờ nhà nước giải quyết. Vì nhà nước không có quyền đó. Phải là Mafia!”  Cái luật im lặng cổ xưa ấy chính là bức tường thành của Mafia suốt mấy trăm năm. Nhưng đó là ở nơi đất máu Sicily nhiều năm trước. Trên đất Mỹ, khi nhân loại sắp bước sang thiên niên kỉ mới, liệu omerta có còn cái quyền năng vô song để bảo vệ các ông trùm?  Nếu như  Bố Già  nói về Mafia có vẻ hơi cổ điển thì Luật Im Lặng hiện đại hơn, có sự xuất hiện của cả FBI và chính phủ một cách rõ ràng.  Những âm mưu, thủ đoạn, những cuộc đấu trí đấu lực của các phe phái và tổ chức được đề cập đến cho độc giả thỏa mãn trí tưởng tượng, cùng phiêu lưu với nhân vật.  Bạn đọc có thể đọc thêm các tác phẩm khác trong  tuyển tập Mario Puzo  để cùng sống với nhân vật đến giay phút cuối cùng nhé.'),
-('MS04', 'TUỔI TRẺ HOANG DẠI', 'Nguyễn Ngọc Thạch', 'NXB Văn học', 'Kỹ năng sống', 10, 95000, '/img/sach/b1cb8713c960e18c41bef97120faf749.jpg', 'Một cuốn sách đơn giản của Nguyễn Ngọc Thạch, đặt sự hữu dụng tính tích cực lên hàng đầu. Sách bao gồm nhiều bài viết ngắn, nói lên cách nhìn nhận và suy nghĩ về cuộc sống, gia đình, công việc, cũng như cơn trầm cảm và khủng hoảng nửa đời người của tác giả, một người vừa đi qua tuổi trẻ và vào giai đoạn thứ ba của cuộc đời.Sách được chia làm ba phần, cấu trúc rõ rệt.Phần một, là các bài viết mang tính kỹ năng mềm cho các bạn học sinh, sinh viên và các bạn trẻ mới bắt đầu trên con đường đi làm. Nó là quá trình đúc kết từ thực tế của Thạch trong hơn mười năm đi làm, từ vị trí nhân viên phục vụ nhà hàng cho đến giám đốc một công ty.Đó là các bài viết về gởi email, viết CV nhìn cho hấp dẫn, những chia sẻ về kinh nghiệm đi phỏng vấn xin việc lần đầu, những vui buồn khi còn là sinh viên và nhận công việc phục vụ quán ăn cho đến những lưu ý khi bước chân vào môi trường công sở. Những kỹ năng mềm cần thiết cho sinh viên nhưng ít trường đại học nào dạy.Phần hai, là những suy nghĩ về mối quan hệ giữa người với người và con người với xã hội. Thạch nói lên suy nghĩ của mình về câu hỏi, “Nhiều tiền để làm gì?”, về cách dùng đồng tiền làm sao cho vui. Về chuyện con người ta cứ phải sống theo đánh giá tiêu chuẩn của người xung quanh, của ông hàng xóm mà chưa quen với việc tự hỏi bản thân mình có hạnh phúc thật sự hay không. Về mối quan hệ bạn bè, đi du lịch cùng nhau hay chỉ đơn giản là… cho mượn tiền rồi làm sao đòi lại?Phần cuối cùng, là giai đoạn khủng hoảng nửa đời người của Thạch, khi qua ba mươi, người ta dễ lạc lối và hỏi bản thân mình rằng sẽ phải làm gì tiếp theo, khó tìm kiếm niềm vui trong cuộc sống. Và khi đó, con người ta phải học cách sống đơn giản hơn để cân bằng chính cảm xúc của mình.'),
+('MS01', 'GIÁO TRÌNH NHỮNG NGUYÊN LÝ MÁC - LÊNIN', 'Bộ Giáo Dục và Đào Tạo', 'Chính Trị Quốc Gia Sự Thật', 'Giáo trình', 9, 59000, '/img/sach/', 'Thực hiện các Nghị quyết của Đảng Cộng sản Việt Nam, nhất là Nghị quyết Trung ương 5 (khóa X) về công tác tư tưởng, lý luận và báo chí trước yêu cầu mới, ngày 18/9/2008, Bộ Giáo dục và Đào tạo đã ban hành Quyết định số 52/2008/QĐ-BGĐT ban hành Chương trình môn học Những Nguyên Lý Cơ Bản Của Chủ Nghĩa Mác - Lênin dành cho sinh viên khối không chuyên ngành Mác - Lênin, tư tưởng Hồ Chí Minh và phối hợp với Nhà xuất bản Chính trị quốc gia Sự thật xuất bản Giáo Trình Những Nguyên Lý Cơ Bản Của Chủ Nghĩa Mác - Lênin (Dành cho sinh viên đại học, cao đăng khối không chuyên ngành Mác - Lênin, tư tưởng Hồ Chí Minh)  Cuốn giáo trình chính trị này bao gồm 3 phần: • Phần 1: Thế giới quan, phương pháp luận triết học của chủ nghĩa Mác - Lênin • Phần 2: Học thuyết kinh tế của chủ nghĩa Mác - Lênin về phương thức sản xuất tư bản chủ nghĩa • Phần 3: Lý luận của chủ nghĩa Mác - Lênin về chủ nghĩa xã hội'),
+('MS02', 'ĐẠI SỐ TUYỂN TÍNH', 'Ninh Quang Hải', 'NXB Xây Dựng', 'Giáo trình', 2, 52000, '/img/sach/aHR0cHM6Ly9zYWx0LnRpa2ljZG4uY29tL3RzL3Byb2R1Y3QvNTMvMGIvMGUvMjIyYzU0NTU0ODk3ZmE0NzFmOGExNzhlODU4NjJmNmIuanBn.jpg', 'Sách ĐẠI SỐ TUYẾN TÍNH gồm các chương sau:  Chương 1: MA TRẬN - ĐỊNH THỨC - HỆ PHƯƠNG TRÌNH TUYẾN TÍNH.    Chương 2: KHÔNG GIAN VÉC TƠ Chương 3: ÁNH XẠ TUYẾN TÍNH '),
+('MS03', 'LUẬT IM LẶNG', 'Mario Puzo', 'NXB Văn Học', 'Văn học nước ngoài', 6, 710000, '/img/sach/luat-im-lang-bia-1.jpg', '“Tổ chức Mafia củng cố uy quyền bằng luật omerta nghĩa là làm thinh, câm nín. Dân quê Sicily kín miệng đến nỗi người lạ hỏi đường cũng làm thinh. Trong nội bộ Mafia có tội nào đáng chết bằng tội mật báo cảnh sát? Dù chỉ đi thưa lính, tố cáo một thằng vừa giết hụt mình hay vừa đánh đập mình có thương tích. Sau cùng luật omerta trở thành một đạo sống của mọi giới. Chồng con bị giết, con gái bị hãm hiếp, người đàn bà chính gốc Sicily chẳng bao giờ đi thưa lính, nhờ nhà nước giải quyết. Vì nhà nước không có quyền đó. Phải là Mafia!”  Cái luật im lặng cổ xưa ấy chính là bức tường thành của Mafia suốt mấy trăm năm. Nhưng đó là ở nơi đất máu Sicily nhiều năm trước. Trên đất Mỹ, khi nhân loại sắp bước sang thiên niên kỉ mới, liệu omerta có còn cái quyền năng vô song để bảo vệ các ông trùm?  Nếu như  Bố Già  nói về Mafia có vẻ hơi cổ điển thì Luật Im Lặng hiện đại hơn, có sự xuất hiện của cả FBI và chính phủ một cách rõ ràng.  Những âm mưu, thủ đoạn, những cuộc đấu trí đấu lực của các phe phái và tổ chức được đề cập đến cho độc giả thỏa mãn trí tưởng tượng, cùng phiêu lưu với nhân vật.  Bạn đọc có thể đọc thêm các tác phẩm khác trong  tuyển tập Mario Puzo  để cùng sống với nhân vật đến giay phút cuối cùng nhé.'),
+('MS04', 'TUỔI TRẺ HOANG DẠI', 'Nguyễn Ngọc Thạch', 'NXB Văn học', 'Kỹ năng sống', 9, 95000, '/img/sach/b1cb8713c960e18c41bef97120faf749.jpg', 'Một cuốn sách đơn giản của Nguyễn Ngọc Thạch, đặt sự hữu dụng tính tích cực lên hàng đầu. Sách bao gồm nhiều bài viết ngắn, nói lên cách nhìn nhận và suy nghĩ về cuộc sống, gia đình, công việc, cũng như cơn trầm cảm và khủng hoảng nửa đời người của tác giả, một người vừa đi qua tuổi trẻ và vào giai đoạn thứ ba của cuộc đời.Sách được chia làm ba phần, cấu trúc rõ rệt.Phần một, là các bài viết mang tính kỹ năng mềm cho các bạn học sinh, sinh viên và các bạn trẻ mới bắt đầu trên con đường đi làm. Nó là quá trình đúc kết từ thực tế của Thạch trong hơn mười năm đi làm, từ vị trí nhân viên phục vụ nhà hàng cho đến giám đốc một công ty.Đó là các bài viết về gởi email, viết CV nhìn cho hấp dẫn, những chia sẻ về kinh nghiệm đi phỏng vấn xin việc lần đầu, những vui buồn khi còn là sinh viên và nhận công việc phục vụ quán ăn cho đến những lưu ý khi bước chân vào môi trường công sở. Những kỹ năng mềm cần thiết cho sinh viên nhưng ít trường đại học nào dạy.Phần hai, là những suy nghĩ về mối quan hệ giữa người với người và con người với xã hội. Thạch nói lên suy nghĩ của mình về câu hỏi, “Nhiều tiền để làm gì?”, về cách dùng đồng tiền làm sao cho vui. Về chuyện con người ta cứ phải sống theo đánh giá tiêu chuẩn của người xung quanh, của ông hàng xóm mà chưa quen với việc tự hỏi bản thân mình có hạnh phúc thật sự hay không. Về mối quan hệ bạn bè, đi du lịch cùng nhau hay chỉ đơn giản là… cho mượn tiền rồi làm sao đòi lại?Phần cuối cùng, là giai đoạn khủng hoảng nửa đời người của Thạch, khi qua ba mươi, người ta dễ lạc lối và hỏi bản thân mình rằng sẽ phải làm gì tiếp theo, khó tìm kiếm niềm vui trong cuộc sống. Và khi đó, con người ta phải học cách sống đơn giản hơn để cân bằng chính cảm xúc của mình.'),
 ('MS05', '3 PHÚT SƠ CỨU', 'Ngô Đức Hùng', 'NXB Thế giới', 'Chăm sóc sức khỏe', 10, 125000, '/img/sach/ba-phut-so-cuu-bia.jpg', '3 phút là khoảng thời gian để cơ thể tiết ra adrenalin, hormon sống còn giúp máu về tim tốt hơn. Nếu bạn sơ cứu không đúng cách, máu về tim sẽ tồi hơn và các tế bào sẽ rối loạn chuyển hóa.3 phút là thời gian chảy máu trước khi cơ thể khởi động quá trình cầm máu. Nếu bạn sơ cứu không đúng cách, quá trình cầm máu sẽ tồi hơn và giết chết các tế bào được mạch máu đó nuôi dưỡng.3 phút là thời gian tế bào não có thể chịu đựng được khi thiếu oxy trước khi tổn thương vĩnh viễn. Nếu bạn sơ cứu không đúng cách, tế bào não sẽ tổn thương vĩnh viễn và lúc ấy các can thiệp y khoa sẽ trở thành vô nghĩa.Cuốn sách gồm đầy đủ các thông tin giúp bạn sơ cứu trong 3 phút đó. Ngắn gọn. Rõ ràng. An toàn. Hiệu quả'),
 ('MS06', 'CẤP TỐC 789+ ÔN THI THPT MÔN ANH', 'Phạm Thị Tâm', 'Đại Học Quốc Gia Hà Nội', 'Sách Luyện Thi THPT Quốc Gia', 10, 180000, '/img/sach/sach-cap-toc-789-tong-on-thi-thpt-quoc-gia-mon-anh_L.jpg', 'Sách được chia làm 4 phần:  - Phần 1: Quét nhanh KIẾN THỨC TRỌNG TÂM - Phần 2: Tổng hợp skill, mẹo, tips... x2, x3 tốc độ làm, giải đề - Phần 3: CHIẾN THUẬT TỔNG ÔN - MỤC TIÊU ĐIỂM 8 9 - Phần 4: Bộ câu hỏi vận dụng - vận dụng cao chinh phục điểm 10  Sau khi các bạn hoàn thành cuốn sách CẤP TỐC 7 8 9+ học sinh sẽ được trang bị đầy đủ kiến thức bám sát chương trình tinh giản 2020 của Bộ GD&ĐT, kỹ năng bấm máy tính Casio giải nhanh câu hỏi chi với 20s/1 câu, Tips, mẹo, phương pháp giải nhanh hiệu quả rõ rệt. Ngoài ra, các em học sinh nên xem thêm cuốn sách trong bộ \"CẤP TỐC 789+\" Môn Lý - Hoá - Anh giải pháp cứu cánh vạn sĩ tử 2002.'),
 ('MS07', 'TÂM LÝ HỌC TÍCH CỰC', 'Edward Hoffman', 'NXB Lao Động', 'Kỹ năng sống', 10, 129000, '/img/sach/tam-ly-hoc-tich-cuc.jpg', 'Tâm Lý Học Tích Cực là một cuốn sách thực hành về sự phát triển cá nhân và nuôi dưỡng niềm vui, thông qua cách tiếp cận của tâm lý học tích cực và được thiết kế đặc biệt để tổng hợp các chủ đề theo từng chương ngắn gọn và chú trọng tính vận dụng. Cuốn sách bao gồm 60 nội dung độc lập và súc tích để giúp người đọc tối ưu hóa sự phát triển cá nhân, nhằm làm chủ một cuộc sống hạnh phúc hơn, trọn vẹn hơn và có ý nghĩa hơn.  Trong 20 năm tồn tại với tư cách một chuyên ngành học thuật mới, tâm lý học tích cực (positive psychology) đã nhận được rất nhiều sự quan tâm. Chuyên ngành tâm lý học tích cực tập trung nghiên cứu khoa học về hạnh phúc và sự phồn thịnh. Trên toàn thế giới, không khó để tìm thấy những tác phẩm nghiên cứu xoay quanh chủ đề này.  Khi lĩnh vực tâm lý học tích cực phát triển, các khái niệm của nó được mở rộng đáng kể và hiện nay đã bao gồm cả những khía cạnh hoạt động lành mạnh giữa các cá nhân, vợ chồng, gia đình, các tổ chức và những cộng đồng lớn hơn. Khi giảng dạy những khái niệm hấp dẫn này, bộ đôi tác giả thường kết hợp cả hoạt động trong lớp và bài tập về nhà để nâng cao chất lượng học tập của học viên. Phản hồi của học viên về các hoạt động thực hành tâm lý học tích cực luôn đầy khích lệ. “Nó đã giúp tôi thay đổi cuộc sống” là phản hồi phổ biến nhất - thường xuyên tới mức các tác giả đã quyết định viết cuốn sách này. Tâm Lý Học Tích Cực tổng hợp các chủ đề theo từng chương ngắn gọn và mạch lạc, chẳng hạn như hạnh phúc mang tính chủ quan, tình yêu lãng mạn, gia đình tích cực, hay hạnh phúc suốt đời. Các tác giả cũng cung cấp một số biện pháp tác động “đặc thù” đến sự phồn thịnh trong tâm lý học tích cực, như các nội dung về lòng biết ơn và cách hình dung tốt nhất về bản thân mình.'),
@@ -461,6 +504,12 @@ ALTER TABLE `docgia`
   ADD PRIMARY KEY (`MaDG`);
 
 --
+-- Indexes for table `muasach`
+--
+ALTER TABLE `muasach`
+  ADD PRIMARY KEY (`MaSoMuaSach`);
+
+--
 -- Indexes for table `phieumuon`
 --
 ALTER TABLE `phieumuon`
@@ -479,6 +528,16 @@ ALTER TABLE `sach`
 --
 ALTER TABLE `taikhoan`
   ADD PRIMARY KEY (`User`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `muasach`
+--
+ALTER TABLE `muasach`
+  MODIFY `MaSoMuaSach` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Constraints for dumped tables
