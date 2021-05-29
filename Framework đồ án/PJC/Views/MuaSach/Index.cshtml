@@ -1,0 +1,152 @@
+﻿@model IEnumerable<PJC.Models.muasach>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Scripts{
+    <script>
+        setTimeout(function () {
+            $('#msgAlert').fadeOut('slow');
+        }, 2000);</script>
+}
+<div class="container-fluid">
+    <h1 class="mt-4">Danh sách Bán Sách</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="/Home">Trang chủ</a></li>
+        <li class="breadcrumb-item active">Danh sách Bán sách</li>
+    </ol>
+    <div class="card mb-12">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-md-6 col-xs-12">
+                    <a class="btn btn-success" href="/MuaSach/Create">Tạo mới</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+
+            <div class="card mb-4">
+                <div class="card-header"><i class="fas fa-table mr-1"></i>Danh sách</div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <div class="row">
+                                    @if (ViewBag.SuccessMsg != null)
+                                    {
+                                        <div id="msgAlert" class="alert alert-success" role="alert">
+                                            @ViewBag.SuccessMsg
+                                        </div>}
+                                </div>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.MaDonHang)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.HoTen)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.SoDienThoai)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.DiaChi)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.MaSach)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.TinhTranDon)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.TinhTranThanhToan)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.NguoiBan)
+                                    </th>
+
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.MaDonHang)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.HoTen)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.SoDienThoai)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DiaChi)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.MaSach)
+                                    </td>
+                                    <td>
+                                        @if (item.TinhTranDon != 1)
+                                        {
+                                            @Html.Label("Đang chờ phê duyệt")
+                                        }
+                                        else
+                                        {
+                                            @Html.Label("Đã Bán")
+                                        }
+
+                                    </td>
+                                    <td>
+                                        @if (item.TinhTranThanhToan != 1)
+                                        {
+                                            @Html.Label("Chưa thanh Toán")
+
+                                        }
+                                        else
+                                        {
+                                            @Html.Label("Đã thanh toán")
+
+                                        }
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.NguoiBan)
+                                    </td>
+                                    @if (item.TinhTranDon != 1)
+                                    {
+                                        <td>
+                                            <form action="~/MuaSach/Ban" method="post">
+                                                <input type="hidden" value="@item.MaDonHang" name="id" />
+                                                <input type="hidden" value="@item.MaSach" name="MaSach" />
+
+                                                <input type="submit" value="Bán" class="btn btn-outline-success" />
+                                            </form>
+
+                                        </td>
+                                        <td>
+                                            <form action="~/MuaSach/Xoa" method="post">
+                                                <input type="hidden" value="@item.MaDonHang" name="id" />
+                                                <input type="submit" value="Xóa" class="btn btn-outline-warning" />
+                                            </form>
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td>
+                                        </td>
+                                        <td>
+                                        </td>
+                                    }
+
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+
+
+
+
